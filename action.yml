@@ -27,16 +27,18 @@ runs:
           sudo apt-get --assume-yes --no-install-recommends install openvpn
     - name: Cat the config file
       shell: bash
-      run: cat ./config/client.ovpn
+      run: cat $GITHUB_ACTION_PATH/config/client.ovpn
 
     - name: Update VPN config
       shell: bash
-      run: echo "remote ${{ inputs.remote }}" >> ./config/client.ovpn
+      run: |
+        cp $GITHUB_ACTION_PATH/config/client.ovpn ./client.conf
+        echo "remote ${{ inputs.remote }}" >> ./client.ovpn
 
     - name: Open VPN connection
       uses: "kota65535/github-openvpn-connect-action@dcd6ef29ddfa24f05d51ca085e6400ea9c1a34fa"
       with:
-        config_file: ./config/client.ovpn
+        config_file: ./client.ovpn
         username: ${{ inputs.username }}
         password: ${{ inputs.password }}
         tls_auth_key: ${{ inputs.tls_auth_key }}
