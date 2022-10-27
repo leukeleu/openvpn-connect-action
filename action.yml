@@ -1,0 +1,42 @@
+name: OpenVPN Connection
+author: Leukeleu B.V.
+description: Create a VPN connection to a remote server
+branding:
+  icon: lock
+  color: orange
+inputs:
+  username:
+    description: 'The username to use for the VPN connection'
+    required: true
+  password:
+    description: 'The password to use for the VPN connection'
+    required: true
+  tls_auth_key:
+    description: 'The tls-auth key to use for the VPN connection'
+    required: true
+  remote:
+    description: 'The remote server [and port] to connect to. Separate host and port with a space.'
+    required: true
+runs:
+  using: composite
+  steps:
+    - name: Install OpenVPN
+      uses: ubuntu-latest
+      run: |
+          sudo apt-get update
+          sudo apt-get --assume-yes --no-install-recommends install openvpn
+    - name: Cat the config file
+      uses: ubuntu-latest
+      run: cat ./config/client.ovpn
+
+    - name: Update VPN config
+      uses: ubuntu-latest
+      run: echo "remote ${{ inputs.remote }}" >> ./config/client.ovpn
+
+    - name: Open VPN connection
+      uses: "kota65535/github-openvpn-connect-action@dcd6ef29ddfa24f05d51ca085e6400ea9c1a34fa"
+      with:
+        config_file: ./config/client.ovpn
+        username: ${{ inputs.username }}
+        password: ${{ inputs.password }}
+        tls_auth_key: ${{ inputs.tls_auth_key }}
