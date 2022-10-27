@@ -32,7 +32,7 @@ runs:
     - name: Open VPN connection
       uses: "kota65535/github-openvpn-connect-action@dcd6ef29ddfa24f05d51ca085e6400ea9c1a34fa"
       with:
-        config_file: $GITHUB_ACTION_PATH/config/client.ovpn
+        config_file: ${{ github.action_path }}/config/client.ovpn
         username: ${{ inputs.username }}
         password: ${{ inputs.password }}
         tls_auth_key: ${{ inputs.tls_auth_key }}
