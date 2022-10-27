@@ -21,16 +21,16 @@ runs:
   using: composite
   steps:
     - name: Install OpenVPN
-      uses: ubuntu-latest
+      shell: bash
       run: |
           sudo apt-get update
           sudo apt-get --assume-yes --no-install-recommends install openvpn
     - name: Cat the config file
-      uses: ubuntu-latest
+      shell: bash
       run: cat ./config/client.ovpn
 
     - name: Update VPN config
-      uses: ubuntu-latest
+      shell: bash
       run: echo "remote ${{ inputs.remote }}" >> ./config/client.ovpn
 
     - name: Open VPN connection
