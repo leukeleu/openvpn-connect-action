@@ -23,7 +23,6 @@ runs:
     - name: Install OpenVPN
       shell: bash
       run: |
-          sudo apt-get update
           sudo apt-get --no-install-recommends -qq install openvpn
     - name: Update the config file
       shell: bash
