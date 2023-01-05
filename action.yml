@@ -31,7 +31,7 @@ runs:
 
     - name: Open VPN connection
       # This is an exact pin of a third-party action. Only update after thoroughly reviewing the changes!
-      uses: "kota65535/github-openvpn-connect-action@dcd6ef29ddfa24f05d51ca085e6400ea9c1a34fa"
+      uses: "kota65535/github-openvpn-connect-action@9bff2bca2a134890419a96d791ac143b08b37fae"
       with:
         config_file: ${{ github.action_path }}/config/client.ovpn
         username: ${{ inputs.username }}
