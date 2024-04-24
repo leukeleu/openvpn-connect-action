@@ -23,6 +23,9 @@ runs:
     - name: Install OpenVPN
       shell: bash
       run: |
+          # Temporary workaround to make apt-get update work:
+          # https://github.com/microsoft/linux-package-repositories/issues/130#issuecomment-2074645171
+          sudo rm /etc/apt/sources.list.d/microsoft-prod.list      
           sudo apt-get update
           sudo apt-get --no-install-recommends -qq install openvpn
     - name: Update the config file
