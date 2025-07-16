@@ -36,3 +36,6 @@ The VPN connection will be closed automatically at the end of the job.
 - `ovpn_username`: The username for OpenVPN authentication. This should also be stored as a secret.
 - `ovpn_password`: The password for OpenVPN authentication. This should be stored as a secret.
 
+## License
+
+[MIT](LICENSE)
