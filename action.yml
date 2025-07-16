@@ -5,6 +5,6 @@ branding:
   icon: lock
   color: orange
 runs:
-  using: "node22"
+  using: "node20"
   main: "main.js"
   post: "cleanup.js"
