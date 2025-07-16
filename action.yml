@@ -5,8 +5,14 @@ branding:
   icon: lock
   color: orange
 inputs:
-  vpn_profile:
+  ovpn_profile:
     description: The contents of the OpenVPN profile file
+    required: true
+  ovpn_username:
+    description: The username for the OpenVPN connection
+    required: true
+  ovpn_password:
+    description: The password for the OpenVPN connection
     required: true
 runs:
   using: "node20"

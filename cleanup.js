@@ -1,5 +1,5 @@
 import * as core from '@actions/core';
-import { unlink } from 'fs/promises';
+import {readFile, unlink} from 'fs/promises';
 import { existsSync } from 'fs';
 
 async function cleanup() {
@@ -12,6 +12,14 @@ async function cleanup() {
       core.info(`Deleted temp file: ${filePath}`);
     } else {
       core.info(`Temp file not found: ${filePath}`);
+    }
+
+    if (existsSync('up.txt')) {
+      await unlink('up.txt');
+      core.info('Deleted up.txt file');
+    }
+    else {
+      core.info('up.txt file not found');
     }
 
     const pid = core.getState('pid');
@@ -29,7 +37,12 @@ async function cleanup() {
         }
       }
     } else {
-      core.info('No PID found for OpenVPN daemon.');
+      core.info('No PID found for OpenVPN daemon. Here is the log file for reference:');
+        const logFile = 'openvpn.log';
+        if (existsSync(logFile)) {
+            const logContent = await readFile(logFile, 'utf8');
+            core.info(logContent);
+        }
     }
 
   } catch (error) {
