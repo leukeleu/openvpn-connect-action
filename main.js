@@ -30,7 +30,9 @@ async function run() {
     const tail = new Tail("openvpn.log");
 
     try {
+      core.info("Starting OpenVPN daemon...");
       execSync(`sudo openvpn --config ${configFile} --daemon --log openvpn.log --writepid openvpn.pid`);
+      core.info("OpenVPN daemon started.");
     } catch (error) {
       core.error(await readFile("openvpn.log", "utf8"));
       tail.unwatch();
