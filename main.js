@@ -21,7 +21,7 @@ async function run() {
     core.info("Running main action logic...");
     installOpenVPN();
 
-    const vpnProfile = core.getInput("ovpn_profile", { required: true });
+    const vpnConfig = core.getInput("ovpn_config", { required: true });
     const vpnUsername = core.getInput("ovpn_username", { required: true });
     const vpnPassword = core.getInput("ovpn_password", { required: true });
 

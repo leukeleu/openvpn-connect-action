@@ -5,8 +5,8 @@ branding:
   icon: lock
   color: orange
 inputs:
-  ovpn_profile:
-    description: The contents of the OpenVPN profile file
+  ovpn_config:
+    description: The contents of the OpenVPN configuration file
     required: true
   ovpn_username:
     description: The username for the OpenVPN connection
