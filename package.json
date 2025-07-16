@@ -1,5 +1,5 @@
 {
-  "name": "openvpn-connection",
+  "name": "openvpn-connect-action",
   "version": "1.0.0",
   "type": "module",
   "dependencies": {
