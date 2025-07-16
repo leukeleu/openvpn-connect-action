@@ -36,8 +36,8 @@ async function run() {
     core.saveState("config_file", configFile);
 
     // username & password auth
-    await appendFile(configFile, "\nauth-user-pass up.txt\n");
     const credentialsFile = path.join(tempDir, "up.txt");
+    await appendFile(configFile, `\nauth-user-pass ${credentialsFile}\n`);
     await writeFile(credentialsFile, [vpnUsername, vpnPassword].join("\n"), {
       mode: 0o600,
     });
