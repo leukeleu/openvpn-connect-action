@@ -8,3 +8,5 @@ jobs:
       - uses: actions/checkout@v4
       - name: Test
         uses: ./
+        with:
+          vpn_profile: ${{ secrets.VPN_PROFILE }}

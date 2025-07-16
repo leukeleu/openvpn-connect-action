@@ -4,6 +4,10 @@ description: Create a VPN connection to a remote server
 branding:
   icon: lock
   color: orange
+inputs:
+  vpn_profile:
+    description: The contents of the OpenVPN profile file
+    required: true
 runs:
   using: "node20"
   main: "main.js"
