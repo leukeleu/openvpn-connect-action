@@ -21,9 +21,9 @@ function installOpenVPN() {
 }
 
 async function run() {
-  try {
-    installOpenVPN();
+  installOpenVPN();
 
+  try {
     const vpnConfig = core.getInput("ovpn_config", { required: true });
     const vpnUsername = core.getInput("ovpn_username", { required: true });
     const vpnPassword = core.getInput("ovpn_password", { required: true });
