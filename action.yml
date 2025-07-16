@@ -5,35 +5,16 @@ branding:
   icon: lock
   color: orange
 inputs:
-  username:
-    description: 'The username to use for the VPN connection'
+  ovpn_config:
+    description: The contents of the OpenVPN configuration file
     required: true
-  password:
-    description: 'The password to use for the VPN connection'
+  ovpn_username:
+    description: The username for the OpenVPN connection
     required: true
-  tls_auth_key:
-    description: 'The tls-auth key to use for the VPN connection'
-    required: true
-  remote:
-    description: 'The remote server [and port] to connect to. Separate host and port with a space.'
+  ovpn_password:
+    description: The password for the OpenVPN connection
     required: true
 runs:
-  using: composite
-  steps:
-    - name: Install OpenVPN
-      shell: bash
-      run: |
-          sudo apt-get update
-          sudo apt-get --no-install-recommends -qq install openvpn
-    - name: Update the config file
-      shell: bash
-      run: echo "remote ${{ inputs.remote }}" >> $GITHUB_ACTION_PATH/config/client.ovpn
-
-    - name: Open VPN connection
-      # This is an exact pin of a third-party action. Only update after thoroughly reviewing the changes!
-      uses: "kota65535/github-openvpn-connect-action@9bff2bca2a134890419a96d791ac143b08b37fae"
-      with:
-        config_file: ${{ github.action_path }}/config/client.ovpn
-        username: ${{ inputs.username }}
-        password: ${{ inputs.password }}
-        tls_auth_key: ${{ inputs.tls_auth_key }}
+  using: "node20"
+  main: "main.js"
+  post: "cleanup.js"

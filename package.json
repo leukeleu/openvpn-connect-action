@@ -1,0 +1,13 @@
+{
+  "name": "openvpn-connect-action",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "@actions/core": "^1.11.1",
+    "tail": "2.2.6"
+  },
+  "scripts": {
+    "lintfix": "npx prettier --write .",
+    "lint": "npx prettier --check ."
+  }
+}
