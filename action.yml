@@ -4,19 +4,6 @@ description: Create a VPN connection to a remote server
 branding:
   icon: lock
   color: orange
-inputs:
-  username:
-    description: 'The username to use for the VPN connection'
-    required: true
-  password:
-    description: 'The password to use for the VPN connection'
-    required: true
-  tls_auth_key:
-    description: 'The tls-auth key to use for the VPN connection'
-    required: true
-  remote:
-    description: 'The remote server [and port] to connect to. Separate host and port with a space.'
-    required: true
 runs:
   using: "node22"
   main: "main.js"
