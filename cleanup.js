@@ -1,6 +1,7 @@
 import * as core from '@actions/core';
 import {readFile, unlink} from 'fs/promises';
 import { existsSync } from 'fs';
+import {execSync} from "child_process";
 
 async function cleanup() {
   try {
@@ -25,15 +26,15 @@ async function cleanup() {
     const pid = core.getState('pid');
     if (pid) {
       try {
-        process.kill(parseInt(pid, 10), 'SIGTERM');
+        execSync(`sudo kill -TERM ${pid}`, {stdio: 'inherit'});
         core.info(`Terminated OpenVPN daemon with PID: ${pid}`);
       } catch (error) {
-        core.error(`Failed to terminate OpenVPN daemon with PID ${pid}: ${error.message}`);
+        core.info(`Failed to terminate OpenVPN daemon with PID ${pid}: ${error.message}`);
         try {
-          process.kill(parseInt(pid, 10), 'SIGKILL');
+          execSync(`sudo kill -KILL ${pid}`, {stdio: 'inherit'});
           core.info(`Forcefully terminated OpenVPN daemon with PID: ${pid}`);
         } catch (killError) {
-          core.error(`Failed to forcefully terminate OpenVPN daemon with PID ${pid}: ${killError.message}`);
+          core.info(`Failed to forcefully terminate OpenVPN daemon with PID ${pid}: ${killError.message}`);
         }
       }
     } else {
