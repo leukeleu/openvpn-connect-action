@@ -7,19 +7,20 @@ async function cleanup() {
   try {
     core.info("Running post cleanup logic...");
 
-    const filePath = core.getState("temp_file");
-    if (existsSync(filePath)) {
-      await unlink(filePath);
-      core.info(`Deleted temp file: ${filePath}`);
+    const configFile = core.getState("config_file");
+    if (existsSync(configFile)) {
+      await unlink(configFile);
+      core.info(`Deleted config file: ${configFile}`);
     } else {
-      core.info(`Temp file not found: ${filePath}`);
+      core.info(`Config file not found: ${configFile}`);
     }
 
-    if (existsSync("up.txt")) {
-      await unlink("up.txt");
-      core.info("Deleted up.txt file");
+    const credentialsFile = core.getState("credentials_file");
+    if (existsSync(credentialsFile)) {
+      await unlink(credentialsFile);
+      core.info("Deleted credentials file");
     } else {
-      core.info("up.txt file not found");
+      core.info("Credentials file not found");
     }
 
     const pid = core.getState("pid");
