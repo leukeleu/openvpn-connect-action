@@ -12,10 +12,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Connect to OpenVPN
-        uses: leukeleu/openvpn-connection@v2
+        uses: leukeleu/openvpn-connection@v3
         with:
           ovpn_config: ${{ secrets.OVPN_CONFIG }}
           ovpn_username: ${{ secrets.OVPN_USERNAME }}
