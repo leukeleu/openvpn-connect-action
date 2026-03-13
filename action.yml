@@ -15,6 +15,6 @@ inputs:
     description: The password for the OpenVPN connection
     required: true
 runs:
-  using: "node20"
+  using: "node24"
   main: "main.js"
   post: "cleanup.js"
